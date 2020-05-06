@@ -1,20 +1,20 @@
-### emoji_analysis
+## emoji_analysis
 
-Topic : sentiment analysis using WhatsApp emojis.
+**Topic** : sentiment analysis using WhatsApp emojis.
 
-Platform : Python
+**Platform** : Python
 
 ## To run:
 - Clone the reposiory and *cd* into `code`
 
 Syntax:
 ```
-python3 get\_score.py '`screenshot\_name`'
+python3 get_score.py 'screenshot_name'
 ```
 
 Example:
 ```
-python3 get\_score.py 'subhasish\_2'
+python3 get_score.py 'subhasish_2'
 ```
 
 ## Directory layout
