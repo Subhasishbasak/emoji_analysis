@@ -16,6 +16,9 @@ Example:
 ```
 python3 get_score.py 'subhasish_2'
 ```
+## To collaborate
+- If you are interested and you are most to collaborate in this project. Here is a basic small guide : https://drive.google.com/open?id=1VOubfPMqUFKH_UBQ2B32qbAKZNG24XPi
+
 
 ## Directory layout
 
