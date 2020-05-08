@@ -5,7 +5,7 @@ import os
 import cv2
 from image_to_emoji import image_2_emoji 
 
-def image_2_name(file_path, method = 'cv2.TM_SQDIFF_NORMED'):
+def image_2_name(image, method = 'cv2.TM_SQDIFF_NORMED'):
     
     '''
     available methods : 'cv2.TM_CCOEFF', 'cv2.TM_CCOEFF_NORMED', 'cv2.TM_CCORR',
@@ -13,7 +13,7 @@ def image_2_name(file_path, method = 'cv2.TM_SQDIFF_NORMED'):
     '''
     
     methods = eval(method)
-    emoji_list = image_2_emoji(file_path)
+    emoji_list = image_2_emoji(image)
     emoji_name_list = [0]*len(emoji_list)
     output = [0]*len(emoji_list)
     

@@ -2,7 +2,7 @@
 
 import cv2
 
-def image_2_emoji(file_path):
+def image_2_emoji(image):
     
     def to_half(image):
         
@@ -22,7 +22,7 @@ def image_2_emoji(file_path):
                 emoji_list.append(temp)
         return emoji_list
     
-    img = cv2.imread(file_path)
+    img = image
     
     dim = (560,280)
     resized = cv2.resize(img, dim, interpolation = cv2.INTER_AREA) 
