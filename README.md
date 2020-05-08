@@ -17,14 +17,19 @@ Example:
 python3 get_score.py 'subhasish_2'
 ```
 ## To collaborate
-- If you are interested, you are most welcome to collaborate in this project. Here is a basic small guide : [Click here](https://drive.google.com/open?id=1VOubfPMqUFKH_UBQ2B32qbAKZNG24XPi)
+- To collaborate in this project, here is a small guide : [grab a copy](https://drive.google.com/open?id=1VOubfPMqUFKH_UBQ2B32qbAKZNG24XPi)
 
 
 ## Directory layout
 
-TODO: explain here how things are organized in this repo
+- code     : `.py` files and `.ipynb` notebooks
+- lib      : pre-constructed dictionary
+- resource : data, other resources
 
-## The workflow can be divided into the following branches:
+## The workflow :
+
+TODO : this is dirty, make it organized
+
 - Data collection & pre-processing
 	- Collection of whatsapp recent used emojis (observed samples) : user screenshots
 	- Collection of labelled whatsapp emojis : emoji_name & unicode representation
@@ -46,4 +51,7 @@ TODO: explain here how things are organized in this repo
 
 ## References:
 - Sentiment of Emojis, [click here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144296)
+
+## contact:
+- [Contact me](https://subhasishbasak.github.io/)
 
