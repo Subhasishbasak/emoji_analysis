@@ -1,7 +1,8 @@
 # transforms the screenshot to process-able image
 
-import numpy as np
 import cv2
+import statistics
+import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 
@@ -69,10 +70,11 @@ def crop(file_path):
     
     return cropped_img
 
+
 def final_crop(file_path):
 
     main_img = crop(file_path)
-    
+
     kernel = np.ones((5,5),np.float32)/25
 
     k = 20
@@ -80,22 +82,52 @@ def final_crop(file_path):
     img = main_img
     for i in range(k):
         img = cv2.filter2D(img,-1,kernel)
-        
-    pixel_array = img[:,:,2][:,200]
-    peaks, val = find_peaks(pixel_array, height=0)
-
-    num_emojis = len(peaks)
+    
+    # Row check
+    peak_len = []
+    l = np.random.uniform(low=0, high=main_img.shape[0], size=1000).astype(int)
+    for i in l:
+        pixel_array = img[:,:,2][i]
+        peaks, val = find_peaks(pixel_array, height=0)
+        peak_len.append(len(peaks))
+    
+    #print("simulated num of emojis in a row : ", peak_len)
+    num_emojis_row = statistics.mode(peak_len)
+    #print("mode of emojis in a row : ",num_emojis_row)
+    #print("Prob. of mode(row)",len(np.where(np.array(peak_len)==num_emojis_row)[0])/len(peak_len))
+    
+    assert num_emojis_row == 8, 'Incompatible screenshot dimension(rows) : '+ str(num_emojis_row)
+    
+    # Column check
+    peak_len = []
+    l = np.random.uniform(low=0, high=main_img.shape[0]//2, size=1000).astype(int)
+    for i in l:
+        pixel_array = img[:,:,2][:, i]
+        peaks, val = find_peaks(pixel_array, height=0)
+        peak_len.append(len(peaks))
+    
+    #print("simulated num of emojis in a col : ", peak_len)
+    num_emojis_col = statistics.mode(peak_len)
+    #print("mode of emojis in a col : ",num_emojis_row)
+    #print("Prob. of mode(col)",len(np.where(np.array(peak_len)==num_emojis_row)[0])/len(peak_len))
+    
+    assert num_emojis_col >= 4, 'Incompatible screenshot dimension(col) : '+ str(num_emojis_col)
+    
+    num_emojis = 0
+    while num_emojis!=num_emojis_col:
+        l = np.random.uniform(low=0, high=main_img.shape[0]//2, size=1).astype(int)
+        pixel_array = img[:,:,2][:, l[0]]
+        peaks, val = find_peaks(pixel_array, height=0)
+        num_emojis = len(peaks)
     
     if num_emojis > 4:
         loc = (peaks[-2]+peaks[-1])//2
         output = main_img[:loc, :]
-    elif num_emojis < 4:
-        loc = 2*peaks[-1]-(peaks[-2]+peaks[-1])//2
-        output = main_img[:loc, :]
     else:
         output = main_img
-        
+    
+    dim = (560,280)
+    output = cv2.resize(output, dim, interpolation = cv2.INTER_AREA)
     
     return output
-
 

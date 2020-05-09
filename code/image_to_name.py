@@ -35,6 +35,6 @@ def image_2_name(image, method = 'cv2.TM_SQDIFF_NORMED'):
                 emoji_name_list[j] = (min_val, i)
             output[j] = emoji_name_list[j][1].split('_')[0]
     
-    #return emoji_name_list                    
+    #print(emoji_name_list)
     return output
     
