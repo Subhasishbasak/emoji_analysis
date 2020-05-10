@@ -19,7 +19,7 @@ l_neg = []
 l_net = []
 l_pos = []
 
-for i in tqdm(os.listdir(file_name), bar_format='{l_bar}{bar:20}{r_bar}{bar:-10b}'):
+for i in tqdm(os.listdir(file_name), bar_format='{l_bar}{bar:20}{r_bar}{bar:-20b}'):
 	
     file_path = os.path.join(file_name, i)
 
