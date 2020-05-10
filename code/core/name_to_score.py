@@ -21,3 +21,32 @@ def name_2_score(image):
             pass
     
     return output/np.sum(output)
+
+def name_2_diag(image):
+	
+	l_neg = []
+#	l_net = []
+	l_pos = []
+	emoji_name_list = emoji_2_name(image)
+
+	for i in set(emoji_name_list):
+
+		try:
+			l_neg.append([i, score_dict[i][0]])
+			l_pos.append([i, score_dict[i][2]])
+		except KeyError:
+	                pass
+
+	l_neg.sort(key = lambda x: x[1], reverse = True)
+	l_pos.sort(key = lambda x: x[1], reverse = True)
+
+	l_neg_top_emojis, l_neg_top_score  = zip(*l_neg[: 5])
+	l_pos_top_emojis, l_pos_top_score  = zip(*l_pos[: 5])
+
+	neg = [l_neg_top_emojis, l_neg_top_score]
+	pos = [l_pos_top_emojis, l_pos_top_score]
+
+	return neg, pos
+				
+		
+	
