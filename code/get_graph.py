@@ -4,8 +4,8 @@ import os
 import sys
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-from get_score import image_2_score
-from ss_to_image import final_crop
+from core.name_to_score import name_2_score
+from utils.ss_to_image import final_crop
 
 name = sys.argv[1] + '.jpeg'
 file_path = '../resource/screenshots/' + sys.argv[1] + '.jpeg'
@@ -24,9 +24,9 @@ for i in tqdm(os.listdir(file_name), bar_format='{l_bar}{bar:20}{r_bar}{bar:-10b
     file_path = os.path.join(file_name, i)
 
     cropped_image = final_crop(file_path)
-    l_neg.append(image_2_score(cropped_image)[0].round(3))
-    l_net.append(image_2_score(cropped_image)[1].round(3))
-    l_pos.append(image_2_score(cropped_image)[2].round(3))
+    l_neg.append(name_2_score(cropped_image)[0].round(3))
+    l_net.append(name_2_score(cropped_image)[1].round(3))
+    l_pos.append(name_2_score(cropped_image)[2].round(3))
 
 plt.figure()
 
