@@ -6,13 +6,14 @@
 
 Syntax:
 ```
-python3 ss_crop.py 'screenshot_name' 
+python3 show_emoji_list.py 'screenshot_name' 
+python3 show_cropped_img.py 'screenshot_name' 
 ```
 
 Example:
 ```
-python3 get_score.py 'Subhasish_0'
-python3 get_score.py 'Rohan'
+python3 show_cropped_img.py 'Subhasish_0'
+python3 show_cropped_img.py 'Rohan'
 ```
 
 
