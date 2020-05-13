@@ -3,7 +3,7 @@
 
 import os
 import cv2
-from core.image_to_emoji import image_2_emoji 
+from core.image_to_emoji import image_2_emoji_2 
 
 def emoji_2_name(image, method = 'cv2.TM_SQDIFF_NORMED'):
     
@@ -13,7 +13,7 @@ def emoji_2_name(image, method = 'cv2.TM_SQDIFF_NORMED'):
     '''
     
     methods = eval(method)
-    emoji_list = image_2_emoji(image)
+    emoji_list = image_2_emoji_2(image)
     emoji_name_list = [0]*len(emoji_list)
     output = [0]*len(emoji_list)
     
