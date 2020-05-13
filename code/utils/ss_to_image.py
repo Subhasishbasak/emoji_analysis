@@ -96,7 +96,7 @@ def final_crop(file_path):
     #print("mode of emojis in a row : ",num_emojis_row)
     #print("Prob. of mode(row)",len(np.where(np.array(peak_len)==num_emojis_row)[0])/len(peak_len))
     
-    assert num_emojis_row == 8, 'Incompatible screenshot dimension(rows) : '+ str(num_emojis_row)
+    #assert num_emojis_row == 8, 'Incompatible screenshot dimension(rows) : '+ str(num_emojis_row)
     
     # Column check
     peak_len = []
@@ -108,10 +108,10 @@ def final_crop(file_path):
     
     #print("simulated num of emojis in a col : ", peak_len)
     num_emojis_col = statistics.mode(peak_len)
-    #print("mode of emojis in a col : ",num_emojis_row)
-    #print("Prob. of mode(col)",len(np.where(np.array(peak_len)==num_emojis_row)[0])/len(peak_len))
+    #print("mode of emojis in a col : ",num_emojis_col)
+    #print("Prob. of mode(col)",len(np.where(np.array(peak_len)==num_emojis_col)[0])/len(peak_len))
     
-    assert num_emojis_col >= 4, 'Incompatible screenshot dimension(col) : '+ str(num_emojis_col)
+    #assert num_emojis_col >= 4, 'Incompatible screenshot dimension(col) : '+ str(num_emojis_col)
     
     num_emojis = 0
     while num_emojis!=num_emojis_col:
@@ -119,15 +119,9 @@ def final_crop(file_path):
         pixel_array = img[:,:,2][:, l[0]]
         peaks, val = find_peaks(pixel_array, height=0)
         num_emojis = len(peaks)
-    
-    if num_emojis > 4:
-        loc = (peaks[-2]+peaks[-1])//2
-        output = main_img[:loc, :]
-    else:
-        output = main_img
-    
-    dim = (560,280)
-    output = cv2.resize(output, dim, interpolation = cv2.INTER_AREA)
-    
+
+    loc = (peaks[-2]+peaks[-1])//2
+    output = main_img[:loc, :]
+
     return output
 
