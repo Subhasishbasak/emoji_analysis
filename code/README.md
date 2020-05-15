@@ -4,8 +4,11 @@
 
 - Here we take *screenshots* (see `resources/screenshots` for references) of **recently used emoji box** of a WhatsApp user as inputs.
 - Process the screenshots to extract and identify the emojis.
+	- crop the screenshots to discard everything except the emoji box (used intensity differences to identify a suitable crop) and convert it into a process-able image.
+	- the process-able image is then divided into suitable grids to isolate each emoji as smaller images (*70 x 70*) and contruct the `emoji_list` with them.
+	- used `cv2.matchTemplate` to identify the emojis in the `emoji_list`.
 - Compute a consolidated sentiment score based on the emojis.
-
+	- see `References`
 
 ### Directory layout
 
