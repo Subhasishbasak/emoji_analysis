@@ -25,7 +25,7 @@ def emoji_2_name(image, method = 'cv2.TM_SQDIFF_NORMED'):
 
         for j in range(len(emoji_list)):
             
-            res = cv2.matchTemplate(emoji_list[j][:, :, 0] ,template[:, :, 0],methods)
+            res = cv2.matchTemplate(emoji_list[j][:, :, 1] ,template[:, :, 1],methods)
 
             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
             try:
