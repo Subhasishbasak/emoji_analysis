@@ -86,20 +86,6 @@ def final_crop(file_path):
     for i in range(k):
         img = cv2.filter2D(img,-1,kernel)
     
-    # Row check
-    peak_len = []
-    l = np.random.uniform(low=0, high=main_img.shape[0], size=1000).astype(int)
-    for i in l:
-        pixel_array = img[:,:,2][i]
-        peaks, val = find_peaks(pixel_array, height=0)
-        peak_len.append(len(peaks))
-    
-    #print("simulated num of emojis in a row : ", peak_len)
-    num_emojis_row = statistics.mode(peak_len)
-    #print("mode of emojis in a row : ",num_emojis_row)
-    #print("Prob. of mode(row)",len(np.where(np.array(peak_len)==num_emojis_row)[0])/len(peak_len))
-    
-    #assert num_emojis_row == 8, 'Incompatible screenshot dimension(rows) : '+ str(num_emojis_row)
     
     # Column check
     peak_len = []
@@ -110,7 +96,10 @@ def final_crop(file_path):
         peak_len.append(len(peaks))
     
     #print("simulated num of emojis in a col : ", peak_len)
-    num_emojis_col = statistics.mode(peak_len)
+    try :	
+	    num_emojis_col = statistics.mode(peak_len)
+    except statistics.StatisticsError:
+	    num_emojis_col = statistics.mode(peak_len)
     #print("mode of emojis in a col : ",num_emojis_col)
     #print("Prob. of mode(col)",len(np.where(np.array(peak_len)==num_emojis_col)[0])/len(peak_len))
     
