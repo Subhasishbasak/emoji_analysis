@@ -2,9 +2,9 @@
 
 ### The idea/approach
 
-- Here we take *screenshots* of **recently used emoji box** of a WhatsApp user (see `resources/screenshots` for references).
+- Here we take *screenshots* (see `resources/screenshots` for references) of **recently used emoji box** of a WhatsApp user as inputs.
 - Process the screenshots to extract and identify the emojis.
-- Compute a consolidated sentiment score based on the emois.
+- Compute a consolidated sentiment score based on the emojis.
 
 
 ### Directory layout
