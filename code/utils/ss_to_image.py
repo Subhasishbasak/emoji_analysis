@@ -30,12 +30,14 @@ def recur_max(l, lower, upper):
 
 def crop_upper(file_path):
     
-    # discard half
+    # discard half 
+    # Not to be done if Screenshot is already cropped
     def halved(file_path):
-
+	
         img = cv2.imread(file_path)
-        n_row = (img.shape[0]//2)
-        img = img[n_row:, :]
+        if img.shape[0] > img.shape[1]:
+	        n_row = (img.shape[0]//2)
+        	img = img[n_row:, :]
 
         return img
     
@@ -47,6 +49,7 @@ def crop_upper(file_path):
     cropped_img = half_img[loc:,:]
     
     return cropped_img
+
 
 def crop(file_path):
     
