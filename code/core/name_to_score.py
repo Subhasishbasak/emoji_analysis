@@ -8,17 +8,30 @@ from core.emoji_to_name import emoji_2_name
 with open('../lib/score_dict.pickle', 'rb') as handle:
     score_dict = pickle.load(handle)
 
-def name_2_score(image):
+def name_2_score(image, weight = False):
     
     output = None
     emoji_name_list = emoji_2_name(image)
-    for i in emoji_name_list:
-        try:
-            output = np.add(output,np.array(score_dict[i]))
-        except TypeError:
-            output = np.array(score_dict[i])
-        except KeyError:
-            pass
+    weight_list = np.sort(np.random.exponential(scale = 0.5, size = len(emoji_name_list)))[::-1]
+    weight_list = weight_list/np.sum(weight_list)
+    #print(weight_list)
+
+    if weight:
+        for i in range(len(emoji_name_list)):
+            try:
+                output = np.add(output,np.array(score_dict[emoji_name_list[i]]*weight_list[i]))
+            except TypeError:
+                output = np.array(score_dict[emoji_name_list[i]])*weight_list[i]
+            except KeyError:
+                pass
+    else:
+        for i in emoji_name_list:
+            try:
+                output = np.add(output,np.array(score_dict[i]))
+            except TypeError:
+                output = np.array(score_dict[i])
+            except KeyError:
+                pass 
     
     return output/np.sum(output)
 
