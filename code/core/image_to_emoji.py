@@ -68,8 +68,8 @@ def image_2_emoji_2(image):
     img_1 = cv2.resize(img_1, dim, interpolation = cv2.INTER_AREA) 
     
     emoji_list = []
-    for i in range(num_emojis_col):
-        for j in range(num_emojis_row):
+    for j in range(num_emojis_row):
+        for i in range(num_emojis_col):
             temp = img_1[i*70:(i+1)*70,j*70:(j+1)*70]
             emoji_list.append(temp)
     
