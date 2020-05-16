@@ -89,7 +89,7 @@ def final_crop(file_path):
     
     # Column check
     peak_len = []
-    l = np.random.uniform(low=0, high=main_img.shape[0]//2, size=1000).astype(int)
+    l = np.random.uniform(low=0, high=main_img.shape[0]//2, size=100).astype(int)
     for i in l:
         pixel_array = img[:,:,2][:, i]
         peaks, val = find_peaks(pixel_array, height=0)
