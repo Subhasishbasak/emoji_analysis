@@ -4,10 +4,41 @@
 import os
 import sys
 import pandas as pd
+import numpy as np
 from tqdm import tqdm
 from core.name_to_score import name_2_score
 from utils.ss_to_image import final_crop
 
+
+def compute_score(file_name):
+
+    name = str(file_name) + '.jpeg'   
+
+    file_path = '../resource/screenshots/' + str(file_name) + '.jpeg'
+
+    if name in os.listdir('../resource/screenshots/'):
+        cropped_image = final_crop(file_path)
+        l = name_2_score(cropped_image)
+        l = np.round(l, 3)
+    else:
+        file_name = '../resource/screenshots/' + str(file_name)
+
+        l_neg = []
+        l_net = []
+        l_pos = []
+
+        for i in os.listdir(file_name):
+
+            file_path = os.path.join(file_name, i)
+
+            cropped_image = final_crop(file_path)
+            l_neg.append(name_2_score(cropped_image)[0])
+            l_net.append(name_2_score(cropped_image)[1])
+            l_pos.append(name_2_score(cropped_image)[2])
+
+            l = [(sum(l_neg)/len(l_neg)).round(3) , (sum(l_net)/len(l_net)).round(3) , (sum(l_pos)/len(l_pos)).round(3)]    
+    
+    return np.array(l)
 
 if __name__ == '__main__':
 
