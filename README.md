@@ -2,7 +2,7 @@
 
 **Topic** : sentiment analysis using WhatsApp emojis.
 
-**Platform** : Python
+**Platform** : Python3.6
 
 ## To run:
 - Clone the reposiory and *cd* into `code`
